@@ -4,7 +4,7 @@
     <ExternalSystemSettings>
       <option name="env">
         <map>
-          <entry key="GEMINI_API_KEY" value="AIzaSyBi-nWtjOs90TYN6o6gZIHt8bzom9LEois" />
+          <entry key="GEMINI_API_KEY" value="YOUR_API_KEY" />
         </map>
       </option>
       <option name="executionName" />
