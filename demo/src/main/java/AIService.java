@@ -22,7 +22,7 @@ public final class AIService {
         chatPrompt = new ArrayList<>();
     }
 
-    public void serve() {
+    public void serve() throws Exception {
         String path = currProject.getBasePath();
         chatPrompt.add(new UserMessage("This is my project."));
         try {
@@ -37,7 +37,7 @@ public final class AIService {
                 throw new Exception("\nREADME file could not be created\n");
         }
         catch(Exception ex) {
-            throw new RuntimeException(ex);
+            throw new Exception(ex);
         }
     }
 
@@ -54,7 +54,7 @@ public final class AIService {
                     chatPrompt.add(new UserMessage(file.getPath() + "\n" + fileContent + "\n\n"));
                 }
                 catch (Exception ex) {
-                    throw new RuntimeException(ex);
+                    throw new Exception(ex);
                 }
             }
             else if (file.isDirectory()) {
@@ -72,7 +72,7 @@ public final class AIService {
         chatResult = model.chat(chatPrompt).aiMessage().text();
     }
 
-    private Boolean createReadme() {
+    private Boolean createReadme() throws Exception {
         StringBuilder path = new StringBuilder(currProject.getBasePath());
         path.append("/README.md");
         File file = new File(path.toString());
@@ -83,7 +83,7 @@ public final class AIService {
             fw.write(chatResult);
         }
         catch (IOException ex) {
-            throw new RuntimeException(ex);
+            throw new Exception(ex);
         }
 
         return true;
